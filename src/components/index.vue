@@ -20,7 +20,7 @@ export default {
   mounted () {
     console.log($().fireworks())
     $('.fireworks').fireworks({
-      sound: false, // sound effect
+      sound: true, // sound effect
       opacity: 0.9,
       width: '100%',
       height: '100%'
