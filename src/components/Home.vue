@@ -1,0 +1,209 @@
+<template>
+  <el-container class="home-container">
+    <el-main class="main-content">
+      <Header />
+
+      <ProviderNav />
+
+      <div class="plans-section">
+        <section 
+          v-for="(group, index) in groupedPlans" 
+          :key="group.provider.id"
+          :id="`provider-${group.provider.id}`"
+          class="provider-section"
+        >
+          <div class="provider-header">
+            <h2 class="provider-title">{{ group.provider.name }}</h2>
+            <p class="provider-description">{{ group.provider.description }}</p>
+            <el-link 
+              :href="group.provider.website" 
+              type="primary" 
+              target="_blank"
+              class="provider-website"
+            >
+              访问官网 <i class="el-icon-external-link"></i>
+            </el-link>
+          </div>
+
+          <el-row :gutter="20" class="plans-grid">
+            <el-col 
+              v-for="plan in group.plans" 
+              :key="plan.id"
+              :xs="24" 
+              :sm="12" 
+              :md="8" 
+              :lg="6"
+              class="plan-col"
+            >
+              <PlanCard 
+                :plan="plan" 
+                :provider="group.provider" 
+              />
+            </el-col>
+          </el-row>
+        </section>
+
+        <el-empty 
+          v-if="groupedPlans.length === 0" 
+          description="暂无套餐数据"
+          class="empty-state"
+        />
+      </div>
+    </el-main>
+  </el-container>
+</template>
+
+<script>
+import Header from './Header.vue'
+import ProviderNav from './ProviderNav.vue'
+import PlanCard from './PlanCard.vue'
+import providersData from '@/data/providers.json'
+import plansData from '@/data/plans.json'
+import linksData from '@/config/links.json'
+
+export default {
+  name: 'Home',
+  components: {
+    Header,
+    ProviderNav,
+    PlanCard
+  },
+  data() {
+    return {
+      providers: providersData.providers,
+      plans: plansData.plans,
+      links: linksData
+    }
+  },
+  computed: {
+    groupedPlans() {
+      const groups = []
+      
+      for (const provider of this.providers) {
+        const providerPlans = this.plans.filter(
+          plan => plan.providerId === provider.id
+        )
+        
+        if (providerPlans.length > 0) {
+          groups.push({
+            provider,
+            plans: providerPlans
+          })
+        }
+      }
+      
+      return groups
+    }
+  }
+}
+</script>
+
+<style scoped>
+.home-container {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+.main-content {
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.plans-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.provider-section {
+  margin-bottom: 40px;
+  scroll-margin-top: 20px;
+}
+
+.provider-header {
+  margin-bottom: 25px;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+  color: #ffffff;
+}
+
+.provider-title {
+  margin: 0 0 10px 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.provider-description {
+  margin: 0 0 15px 0;
+  font-size: 1rem;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+.provider-website {
+  color: #ffffff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.provider-website:hover {
+  opacity: 0.9;
+  transform: translateX(5px);
+}
+
+.provider-website /deep/ .el-link__inner {
+  color: #ffffff;
+}
+
+.plans-grid {
+  margin: 0;
+}
+
+.plan-col {
+  margin-bottom: 20px;
+}
+
+.empty-state {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .plans-section {
+    padding: 20px 15px;
+  }
+
+  .provider-header {
+    padding: 15px;
+  }
+
+  .provider-title {
+    font-size: 1.4rem;
+  }
+
+  .provider-description {
+    font-size: 0.9rem;
+  }
+
+  .provider-section {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .plans-section {
+    padding: 15px 10px;
+  }
+
+  .provider-title {
+    font-size: 1.2rem;
+  }
+
+  .plan-col {
+    margin-bottom: 15px;
+  }
+}
+</style>

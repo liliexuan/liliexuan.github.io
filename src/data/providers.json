@@ -1,0 +1,58 @@
+{
+  "providers": [
+    {
+      "id": "zhipu",
+      "name": "智谱 z.ai",
+      "website": "https://z.ai",
+      "description": "智谱 AI 提供的编码套餐服务"
+    },
+    {
+      "id": "kimi",
+      "name": "Kimi",
+      "website": "https://kimi.moonshot.cn",
+      "description": "月之暗面 Kimi 智能助手"
+    },
+    {
+      "id": "volcengine",
+      "name": "火山引擎",
+      "website": "https://www.volcengine.com",
+      "description": "火山引擎 Coding Plan 服务"
+    },
+    {
+      "id": "minimax",
+      "name": "MiniMax",
+      "website": "https://www.minimax.io",
+      "description": "MiniMax AI 编码套餐"
+    },
+    {
+      "id": "baidu",
+      "name": "百度智能云千帆",
+      "website": "https://cloud.baidu.com",
+      "description": "百度智能云千帆大模型平台"
+    },
+    {
+      "id": "kwaikat",
+      "name": "快手 KwaiKAT",
+      "website": "https://kat.kuaishou.com",
+      "description": "快手 KwaiKAT 编码套餐"
+    },
+    {
+      "id": "xaio",
+      "name": "X-AIO",
+      "website": "https://x-aio.com",
+      "description": "X-AIO AI 服务平台"
+    },
+    {
+      "id": "ucloud",
+      "name": "优云智算",
+      "website": "https://www.ucloud.cn",
+      "description": "优云智算 AI 服务"
+    },
+    {
+      "id": "aliyun",
+      "name": "阿里云通义千问",
+      "website": "https://tongyi.aliyun.com",
+      "description": "阿里云通义千问编码套餐"
+    }
+  ]
+}

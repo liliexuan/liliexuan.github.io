@@ -1,0 +1,64 @@
+{
+  "name": "coding-plans-board",
+  "version": "2.0.0",
+  "description": "编码套餐看板 - 展示各 AI 编码套餐价格对比",
+  "author": "Your Name",
+  "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "start": "npm run dev",
+    "build": "node build/build.js"
+  },
+  "dependencies": {
+    "element-ui": "^2.15.14",
+    "jquery": "^3.6.0",
+    "vue": "^2.6.14",
+    "vue-router": "^3.5.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.6",
+    "babel-core": "^6.26.3",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "chalk": "^2.4.2",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "html-webpack-plugin": "^2.30.1",
+    "node-notifier": "^5.4.3",
+    "optimize-css-assets-webpack-plugin": "^3.2.1",
+    "ora": "^1.4.0",
+    "portfinder": "^1.0.28",
+    "postcss-import": "^11.1.0",
+    "postcss-loader": "^2.1.6",
+    "postcss-url": "^7.3.2",
+    "rimraf": "^2.7.1",
+    "semver": "^5.7.1",
+    "shelljs": "^0.8.5",
+    "uglifyjs-webpack-plugin": "^1.3.0",
+    "url-loader": "^1.1.2",
+    "vue-loader": "^13.7.3",
+    "vue-style-loader": "^3.1.2",
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^3.12.0",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-dev-server": "^2.11.5",
+    "webpack-merge": "^4.2.2"
+  },
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
