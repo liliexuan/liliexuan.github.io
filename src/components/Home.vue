@@ -25,22 +25,18 @@
             </el-link>
           </div>
 
-          <el-row :gutter="20" class="plans-grid">
-            <el-col 
+          <div class="plans-grid">
+            <div 
               v-for="plan in group.plans" 
               :key="plan.id"
-              :xs="24" 
-              :sm="12" 
-              :md="8" 
-              :lg="6"
               class="plan-col"
             >
               <PlanCard 
                 :plan="plan" 
                 :provider="group.provider" 
               />
-            </el-col>
-          </el-row>
+            </div>
+          </div>
         </section>
 
         <el-empty 
@@ -110,14 +106,16 @@ export default {
 }
 
 .plans-section {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 30px 20px;
+  padding: 20px 0px;
 }
 
 .provider-section {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   scroll-margin-top: 20px;
+}
+
+.provider-section:last-child {
+  margin-bottom: 0;
 }
 
 .provider-header {
@@ -154,16 +152,21 @@ export default {
   transform: translateX(5px);
 }
 
-.provider-website /deep/ .el-link__inner {
+.provider-website:deep(.el-link__inner) {
   color: #ffffff;
 }
 
 .plans-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
   margin: 0;
+  width: 100%;
 }
 
 .plan-col {
-  margin-bottom: 20px;
+  min-width: 0;
+  width: 100%;
 }
 
 .empty-state {
@@ -191,6 +194,10 @@ export default {
   .provider-section {
     margin-bottom: 30px;
   }
+  
+  .plans-grid {
+    gap: 15px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -200,10 +207,6 @@ export default {
 
   .provider-title {
     font-size: 1.2rem;
-  }
-
-  .plan-col {
-    margin-bottom: 15px;
   }
 }
 </style>
