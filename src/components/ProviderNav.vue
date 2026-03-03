@@ -70,7 +70,7 @@ export default {
       const targetElement = document.getElementById(`provider-${providerId}`)
       if (targetElement) {
         targetElement.scrollIntoView({
-          behavior: 'smooth',
+          behavior: 'auto',
           block: 'start'
         })
         this.activeProvider = providerId

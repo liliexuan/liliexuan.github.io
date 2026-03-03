@@ -5,6 +5,12 @@
 
       <ProviderNav />
 
+      <div class="back-to-top" @click="scrollToTop" title="返回顶部">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/>
+        </svg>
+      </div>
+
       <div class="plans-section">
         <section 
           v-for="(group, index) in groupedPlans" 
@@ -90,6 +96,23 @@ export default {
       
       return groups
     }
+  },
+  methods: {
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto'
+      })
+    },
+    scrollToProvider(providerId) {
+      const element = document.getElementById(`provider-${providerId}`)
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    }
   }
 }
 </script>
@@ -103,6 +126,35 @@ export default {
 .main-content {
   padding: 0;
   overflow-x: hidden;
+  position: relative;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  z-index: 100;
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.back-to-top:active {
+  transform: translateY(-2px);
 }
 
 .plans-section {
@@ -119,8 +171,8 @@ export default {
 }
 
 .provider-header {
-  margin-bottom: 25px;
-  padding: 20px;
+  margin-bottom: 15px;
+  padding: 10px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
