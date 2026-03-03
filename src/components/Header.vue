@@ -49,57 +49,6 @@
           </el-card>
         </el-col>
       </el-row>
-
-      <div class="plugin-section">
-        <el-alert
-          class="plugin-alert"
-          type="info"
-          :closable="false"
-          show-icon
-        >
-          <template slot="title">
-            <div class="plugin-header">
-              <span class="plugin-name">Coding Plans for Copilot</span>
-              <el-tag type="success" size="medium">推荐插件</el-tag>
-            </div>
-          </template>
-          
-          <div class="plugin-content">
-            <p class="plugin-description">
-              VS Code 扩展，帮助接入不同厂商的编码套餐到 Copilot Chat
-            </p>
-            
-            <div class="plugin-reasons">
-              <div class="reasons-title">推荐理由：</div>
-              <ul class="reasons-list">
-                <li><i class="el-icon-check"></i> 一键接入多家供应商的编码套餐服务</li>
-                <li><i class="el-icon-check"></i> 在 Copilot Chat 中直接使用套餐额度</li>
-                <li><i class="el-icon-check"></i> 支持自动切换模型和智能路由</li>
-                <li><i class="el-icon-check"></i> 兼容主流 AI 编码工具（Claude Code、Cursor 等）</li>
-              </ul>
-            </div>
-
-            <div class="plugin-action">
-              <el-button 
-                type="primary" 
-                size="large"
-                class="install-btn"
-                @click="handleInstall"
-              >
-                <i class="el-icon-download"></i>
-                立即安装
-              </el-button>
-              <el-button 
-                type="text"
-                class="learn-more-btn"
-                @click="handleLearnMore"
-              >
-                了解更多 <i class="el-icon-arrow-right"></i>
-              </el-button>
-            </div>
-          </div>
-        </el-alert>
-      </div>
     </div>
   </div>
 </template>
@@ -128,17 +77,7 @@ export default {
       const year = now.getFullYear()
       const month = String(now.getMonth() + 1).padStart(2, '0')
       const day = String(now.getDate()).padStart(2, '0')
-      const hours = String(now.getHours()).padStart(2, '0')
-      const minutes = String(now.getMinutes()).padStart(2, '0')
-      return `${year}-${month}-${day} ${hours}:${minutes}`
-    }
-  },
-  methods: {
-    handleInstall() {
-      window.open('https://marketplace.visualstudio.com/items?itemName=coding-plans-copilot', '_blank')
-    },
-    handleLearnMore() {
-      window.open('https://github.com/coding-plans-copilot', '_blank')
+      return `${year}-${month}-${day}`
     }
   }
 }
@@ -147,7 +86,7 @@ export default {
 <style scoped>
 .header-container {
   width: 100%;
-  padding: 30px 20px;
+  padding: 5px 20px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -155,6 +94,19 @@ export default {
 .header-content {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.header-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 30px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .title-section {
@@ -187,6 +139,7 @@ export default {
   border-radius: 12px;
   transition: all 0.3s ease;
   margin-bottom: 15px;
+  height: 100%;
 }
 
 .stat-card:hover {
@@ -198,6 +151,7 @@ export default {
   display: flex;
   align-items: center;
   padding: 10px;
+  height: 100%;
 }
 
 .stat-icon {
@@ -230,6 +184,8 @@ export default {
 
 .stat-info {
   flex: 1;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .stat-value {
@@ -237,121 +193,16 @@ export default {
   font-weight: 700;
   color: #303133;
   margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .stat-label {
   font-size: 0.9rem;
   color: #909399;
   font-weight: 500;
-}
-
-.plugin-section {
-  margin-top: 20px;
-}
-
-.plugin-alert {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
-  border: none;
-  border-radius: 12px;
-  padding: 20px;
-}
-
-.plugin-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 15px;
-}
-
-.plugin-name {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #303133;
-}
-
-.plugin-description {
-  font-size: 1rem;
-  color: #606266;
-  margin: 0 0 20px 0;
-  line-height: 1.6;
-}
-
-.plugin-reasons {
-  margin-bottom: 20px;
-}
-
-.reasons-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #303133;
-  margin-bottom: 12px;
-}
-
-.reasons-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 10px;
-}
-
-.reasons-list li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.95rem;
-  color: #606266;
-  padding: 8px 12px;
-  background: rgba(102, 126, 234, 0.05);
-  border-radius: 6px;
-  transition: all 0.2s ease;
-}
-
-.reasons-list li:hover {
-  background: rgba(102, 126, 234, 0.1);
-  transform: translateX(5px);
-}
-
-.reasons-list li i {
-  color: #67c23a;
-  font-weight: bold;
-  flex-shrink: 0;
-}
-
-.plugin-action {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.install-btn {
-  height: 45px;
-  padding: 0 30px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: none;
-  transition: all 0.3s ease;
-}
-
-.install-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-.learn-more-btn {
-  font-size: 0.95rem;
-  color: #667eea;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.learn-more-btn:hover {
-  color: #764ba2;
-  transform: translateX(5px);
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
@@ -379,30 +230,17 @@ export default {
   .stat-icon i {
     font-size: 24px;
   }
-
-  .plugin-name {
-    font-size: 1.2rem;
-  }
-
-  .reasons-list {
-    grid-template-columns: 1fr;
-  }
-
-  .plugin-action {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .install-btn {
-    width: 100%;
-  }
 }
 
 @media (max-width: 480px) {
+  .header-container {
+    padding: 15px 10px;
+  }
+
   .main-title {
     font-size: 1.5rem;
   }
-
+  
   .stat-content {
     flex-direction: column;
     text-align: center;

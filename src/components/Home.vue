@@ -5,6 +5,12 @@
 
       <ProviderNav />
 
+      <div class="back-to-top" @click="scrollToTop" title="返回顶部">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/>
+        </svg>
+      </div>
+
       <div class="plans-section">
         <section 
           v-for="(group, index) in groupedPlans" 
@@ -25,22 +31,18 @@
             </el-link>
           </div>
 
-          <el-row :gutter="20" class="plans-grid">
-            <el-col 
+          <div class="plans-grid">
+            <div 
               v-for="plan in group.plans" 
               :key="plan.id"
-              :xs="24" 
-              :sm="12" 
-              :md="8" 
-              :lg="6"
               class="plan-col"
             >
               <PlanCard 
                 :plan="plan" 
                 :provider="group.provider" 
               />
-            </el-col>
-          </el-row>
+            </div>
+          </div>
         </section>
 
         <el-empty 
@@ -94,6 +96,23 @@ export default {
       
       return groups
     }
+  },
+  methods: {
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto'
+      })
+    },
+    scrollToProvider(providerId) {
+      const element = document.getElementById(`provider-${providerId}`)
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    }
   }
 }
 </script>
@@ -107,22 +126,53 @@ export default {
 .main-content {
   padding: 0;
   overflow-x: hidden;
+  position: relative;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  z-index: 100;
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.back-to-top:active {
+  transform: translateY(-2px);
 }
 
 .plans-section {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 30px 20px;
+  padding: 20px 0px;
 }
 
 .provider-section {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   scroll-margin-top: 20px;
 }
 
+.provider-section:last-child {
+  margin-bottom: 0;
+}
+
 .provider-header {
-  margin-bottom: 25px;
-  padding: 20px;
+  margin-bottom: 15px;
+  padding: 10px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
@@ -154,16 +204,21 @@ export default {
   transform: translateX(5px);
 }
 
-.provider-website /deep/ .el-link__inner {
+.provider-website:deep(.el-link__inner) {
   color: #ffffff;
 }
 
 .plans-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
   margin: 0;
+  width: 100%;
 }
 
 .plan-col {
-  margin-bottom: 20px;
+  min-width: 0;
+  width: 100%;
 }
 
 .empty-state {
@@ -191,6 +246,10 @@ export default {
   .provider-section {
     margin-bottom: 30px;
   }
+  
+  .plans-grid {
+    gap: 15px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -200,10 +259,6 @@ export default {
 
   .provider-title {
     font-size: 1.2rem;
-  }
-
-  .plan-col {
-    margin-bottom: 15px;
   }
 }
 </style>

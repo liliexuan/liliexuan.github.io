@@ -57,7 +57,7 @@ export default {
     this.initActiveProvider()
     this.setupScrollListener()
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.removeScrollListener()
   },
   methods: {
@@ -70,7 +70,7 @@ export default {
       const targetElement = document.getElementById(`provider-${providerId}`)
       if (targetElement) {
         targetElement.scrollIntoView({
-          behavior: 'smooth',
+          behavior: 'auto',
           block: 'start'
         })
         this.activeProvider = providerId
@@ -118,40 +118,22 @@ export default {
 }
 
 .provider-nav-content {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 15px 20px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 12px;
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #667eea #f5f7fa;
-}
-
-.provider-nav-content::-webkit-scrollbar {
-  height: 6px;
-}
-
-.provider-nav-content::-webkit-scrollbar-track {
-  background: #f5f7fa;
-  border-radius: 3px;
-}
-
-.provider-nav-content::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 3px;
 }
 
 .nav-item {
-  flex-shrink: 0;
   cursor: pointer;
   transition: all 0.3s ease;
   border-radius: 8px;
   padding: 12px 16px;
   background: #f5f7fa;
   border: 2px solid transparent;
-  min-width: 140px;
-  max-width: 180px;
+  min-width: 0;
 }
 
 .nav-item:hover {
@@ -180,7 +162,7 @@ export default {
 }
 
 .provider-name {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #303133;
   white-space: nowrap;
@@ -193,7 +175,7 @@ export default {
   flex-shrink: 0;
 }
 
-.plan-badge /deep/ .el-badge__content {
+.plan-badge:deep(.el-badge__content) {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-color: #667eea;
   font-size: 0.75rem;
@@ -213,39 +195,29 @@ export default {
   font-weight: 500;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .provider-nav-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 15px;
-    overflow-x: visible;
-  }
-
-  .nav-item {
-    max-width: none;
-  }
-}
-
-@media (max-width: 767px) {
-  .provider-nav-container {
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
-  }
-
-  .provider-nav-content {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     padding: 12px 15px;
+    gap: 10px;
   }
-
+  
   .nav-item {
-    min-width: 130px;
-    padding: 10px 14px;
+    padding: 10px 12px;
   }
-
+  
   .provider-name {
     font-size: 0.85rem;
   }
-
+  
   .plan-count {
     font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .provider-nav-content {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>
