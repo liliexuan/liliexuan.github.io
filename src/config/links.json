@@ -1,0 +1,45 @@
+{
+  "links": {
+    "default": {
+      "zhipu": "https://z.ai",
+      "kimi": "https://kimi.moonshot.cn",
+      "volcengine": "https://www.volcengine.com",
+      "minimax": "https://www.minimax.io",
+      "baidu": "https://cloud.baidu.com",
+      "kwaikat": "https://kat.kuaishou.com",
+      "xaio": "https://x-aio.com",
+      "ucloud": "https://www.ucloud.cn",
+      "aliyun": "https://tongyi.aliyun.com"
+    },
+    "plans": {
+      "zhipu-lite": "https://www.bigmodel.cn/glm-coding?ic=OAANP5LXSK",
+      "zhipu-pro": "https://www.bigmodel.cn/glm-coding?ic=OAANP5LXSK",
+      "zhipu-max": "https://www.bigmodel.cn/glm-coding?ic=OAANP5LXSK",
+      "kimi-adagio": "",
+      "kimi-moderato": "",
+      "kimi-allegretto": "",
+      "kimi-allegro": "",
+      "kimi-vivace": "",
+      "volcengine-lite": "https://volcengine.com/L/Uv90jjlhGq4/",
+      "volcengine-pro": "https://volcengine.com/L/Uv90jjlhGq4/",
+      "minimax-starter": "",
+      "minimax-plus": "",
+      "minimax-max": "",
+      "minimax-plus-highspeed": "",
+      "minimax-max-highspeed": "",
+      "minimax-ultra-highspeed": "",
+      "baidu-lite": "",
+      "baidu-pro": "",
+      "kwaikat-mini": "",
+      "kwaikat-starter": "",
+      "kwaikat-pro": "",
+      "kwaikat-max": "",
+      "xaio-lite": "",
+      "xaio-pro": "",
+      "xaio-max": "",
+      "ucloud-monthly": "",
+      "aliyun-lite": "https://www.aliyun.com/benefit/ai/aistar?userCode=n38l72jk&clubBiz=subTask..12383156..10263..",
+      "aliyun-pro": "https://www.aliyun.com/benefit/ai/aistar?userCode=n38l72jk&clubBiz=subTask..12383156..10263.."
+    }
+  }
+}
